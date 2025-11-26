@@ -1,0 +1,109 @@
+.prescriptions {
+  background: white;
+  border: 1px solid #e0f2fe;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 20px 0;
+}
+
+.prescriptionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prescriptionItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #f8fafc;
+  border: 1px solid #e0f2fe;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.prescriptionItem:hover {
+  background: #f1f5f9;
+  border-color: #bfdbfe;
+}
+
+.itemContent {
+  flex: 1;
+}
+
+.itemTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 4px 0;
+}
+
+.itemTime {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 0 0 4px 0;
+}
+
+.itemSummary {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+}
+
+.itemRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 16px;
+}
+
+.statusBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.statusVerified {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.statusPending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.statusFlagged {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.openBtn {
+  background: linear-gradient(135deg, #336dd3 0%, #0ea5e9 100%);
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.openBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(51, 109, 211, 0.2);
+}
