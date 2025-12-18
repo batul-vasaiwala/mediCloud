@@ -8,6 +8,9 @@ const DoctorSchema = new mongoose.Schema({
   license: String,
   password: String,
   signatureUrl: String,
+  signaturePath: {
+  type: String
+},
 });
 
 export default mongoose.model("Doctor", DoctorSchema);

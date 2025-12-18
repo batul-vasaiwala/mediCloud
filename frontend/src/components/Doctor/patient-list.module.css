@@ -2,7 +2,7 @@
   background: white;
   border: 1px solid #e0f2fe;
   border-radius: 12px;
-  padding: 24px;
+  padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
@@ -10,25 +10,28 @@
   font-size: 18px;
   font-weight: 700;
   color: #1e293b;
-  margin: 0 0 20px 0;
+  margin-bottom: 16px;
 }
 
 .tableContainer {
+  width: 100%;
   overflow-x: auto;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed; /* 🔑 IMPORTANT */
 }
+
+/* ===== HEADER ===== */
 
 .table thead tr {
   border-bottom: 2px solid #e0f2fe;
 }
 
 .table th {
-  text-align: left;
-  padding: 12px 0;
+  padding: 12px 10px;
   font-size: 12px;
   font-weight: 600;
   color: #64748b;
@@ -36,9 +39,11 @@
   letter-spacing: 0.5px;
 }
 
+/* ===== BODY ===== */
+
 .table tbody tr {
   border-bottom: 1px solid #f1f5f9;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .table tbody tr:hover {
@@ -46,10 +51,49 @@
 }
 
 .table td {
-  padding: 16px 0;
+  padding: 14px 10px;
   font-size: 14px;
   color: #475569;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+.table td:hover {
+  white-space: normal;
+}
+
+/* ===== COLUMN WIDTH CONTROL ===== */
+
+.table th:nth-child(1),
+.table td:nth-child(1) {
+  width: 22%;
+}
+
+.table th:nth-child(2),
+.table td:nth-child(2) {
+  width: 15%;
+}
+
+.table th:nth-child(3),
+.table td:nth-child(3) {
+  width: 15%;
+}
+
+.table th:nth-child(4),
+.table td:nth-child(4) {
+  width: 28%;
+}
+
+.table th:nth-child(5),
+.table td:nth-child(5) {
+  width: 24%;
+  text-align: right;
+  overflow: visible; /* 🔑 */
+}
+
+
+/* ===== TEXT STYLES ===== */
 
 .patientName {
   font-weight: 600;
@@ -57,27 +101,30 @@
 }
 
 .conditions {
-  font-size: 12px;
+  font-size: 13px;
   color: #64748b;
 }
 
+/* ===== BUTTON ===== */
+
 .viewBtn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
   background: linear-gradient(135deg, #336dd3 0%, #0ea5e9 100%);
   color: white;
   border: none;
-  padding: 6px 12px;
+  padding: 4px 8px;
   border-radius: 6px;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
   white-space: nowrap;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    max-width: none;
 }
 
 .viewBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(51, 109, 211, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(51, 109, 211, 0.25);
 }

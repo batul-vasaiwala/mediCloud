@@ -46,3 +46,14 @@ export const loginPatient = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+export const getAllPatients = async (req, res) => {
+  try {
+    const patients = await Patient.find()
+      .select("fullName gender dateOfBirth email updatedAt")
+      .sort({ updatedAt: -1 });
+
+    res.json(patients);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

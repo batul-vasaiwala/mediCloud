@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/pdfkit": "^0.17.3",
     "axios": "^1.13.2",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
@@ -21,6 +22,7 @@
     "mongoose": "^8.20.0",
     "multer": "^2.0.2",
     "nodemon": "^3.1.11",
+    "pdfkit": "^0.17.2",
     "qrcode": "^1.5.4"
   }
 }

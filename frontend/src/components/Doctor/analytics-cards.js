@@ -1,41 +1,71 @@
-"use client"
-import styles from "./analytics-card.module.css"
+import { useEffect, useState } from "react";
+import axios from "axios";
+import styles from "./analytics-card.module.css";
 
 export default function AnalyticsCards() {
-  const stats = [
+  const [stats, setStats] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // doctorId saved at login
+  const doctorId = localStorage.getItem("doctorId");
+console.log("Doctor ID:", doctorId);
+
+  useEffect(() => {
+    const fetchAnalytics = async () => {
+      try {
+        const res = await axios.get(
+           `http://localhost:5000/api/doctor/analytics/${doctorId}`
+        );
+        console.log("ANALYTICS API RESPONSE 👉", res.data)
+        setStats(res.data);
+      } catch (err) {
+        console.error("Failed to load analytics", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (doctorId) fetchAnalytics();
+  }, [doctorId]);
+
+  if (loading) return <p>Loading analytics...</p>;
+  if (!stats) return <p>No analytics available</p>;
+
+  const cards = [
     {
       title: "Today",
       items: [
-        { label: "Patients Attended", value: "12" },
-        { label: "Prescriptions Issued", value: "18" },
-        { label: "AI Verification", value: "15" },
-      ],
+        { label: "Patients Attended", value: stats.today.patientsAttended },
+        { label: "Prescriptions Issued", value: stats.today.prescriptionsIssued },
+        { label: "AI Verification", value: stats.today.aiVerification }
+      ]
     },
     {
       title: "This Month",
       items: [
-        { label: "Total Patients", value: "284" },
-        { label: "Total Prescriptions", value: "456" },
-        { label: "Common Diagnosis", value: "Hypertension" },
-      ],
+        { label: "Total Patients", value: stats.month.totalPatients },
+        { label: "Total Prescriptions", value: stats.month.totalPrescriptions },
+        { label: "Common Diagnosis", value: stats.month.commonDiagnosis }
+      ]
     },
     {
       title: "All Time",
       items: [
-        { label: "Total Patients", value: "2,847" },
-        { label: "Lifetime Prescriptions", value: "12,450" },
-        { label: "Avg. Patients/Day", value: "34.2" },
-      ],
-    },
-  ]
+        { label: "Total Patients", value: stats.allTime.totalPatients },
+        { label: "Lifetime Prescriptions", value: stats.allTime.lifetimePrescriptions },
+        { label: "Avg. Patients/Day", value: stats.allTime.avgPatientsPerDay }
+      ]
+    }
+  ];
 
   return (
     <div className={styles.cardsGrid}>
-      {stats.map((stat, idx) => (
+      {cards.map((card, idx) => (
         <div key={idx} className={styles.card}>
-          <h3 className={styles.cardTitle}>{stat.title}</h3>
+          <h3 className={styles.cardTitle}>{card.title}</h3>
+
           <div className={styles.statsList}>
-            {stat.items.map((item, i) => (
+            {card.items.map((item, i) => (
               <div key={i} className={styles.statItem}>
                 <span className={styles.statLabel}>{item.label}</span>
                 <span className={styles.statValue}>{item.value}</span>
@@ -45,5 +75,5 @@ export default function AnalyticsCards() {
         </div>
       ))}
     </div>
-  )
+  );
 }

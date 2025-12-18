@@ -41,6 +41,12 @@ export default function PatientAuth({ onBack }) {
 
       if (data.success) {
         localStorage.setItem("token", data.token);
+         // store patient object returned by backend
+  localStorage.setItem(
+    "patient",
+    JSON.stringify(data.patient)
+  );
+
         window.location.href = "/patientDashboard";
       } else {
         alert(data.error || "Login failed");
@@ -66,6 +72,12 @@ export default function PatientAuth({ onBack }) {
     console.log("Registration Response:", data);
 
     if (data.success) {
+       localStorage.setItem("token", data.token);
+  localStorage.setItem(
+    "patient",
+    JSON.stringify(data.patient)
+  );
+
       alert("Registration successful!");
       window.location.href = "/patientDashboard";
     } else {

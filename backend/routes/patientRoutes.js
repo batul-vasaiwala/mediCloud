@@ -1,6 +1,6 @@
 import express from "express";
 import { registerPatient, loginPatient } from "../controllers/patientController.js";
-
+import { getAllPatients } from "../controllers/patientController.js";
 const router = express.Router();
 
 
@@ -10,4 +10,5 @@ router.post("/register", registerPatient);
 // LOGIN
 router.post("/login", loginPatient);
 
+router.get("/", getAllPatients);
 export default router;

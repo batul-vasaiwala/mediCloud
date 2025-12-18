@@ -34,10 +34,14 @@ export default function DoctorAuth({ onBack }) {
       
       const data = await res.json();
       console.log("Login Response:", data);
-      if (data.success) {
+    if (data.success) {
     localStorage.setItem("token", data.token);
-    window.location.href = "/doctorDashboard";  // redirect
-} else {
+    localStorage.setItem("doctor", JSON.stringify(data.doctor));
+      // ⬅️ IMPORTANT
+        localStorage.setItem("doctorId", data.doctor._id);
+    window.location.href = "/doctorDashboard";
+}
+ else {
     alert(data.error || "Login failed");
 }
 
@@ -58,9 +62,16 @@ export default function DoctorAuth({ onBack }) {
       method: "POST",
       body: registerForm,
     });
-
     const data = await res.json();
-    console.log("Registration Response:", data);
+      console.log("Registration Response:", data);
+
+      if (!data.success) {
+        return alert(data.error || "Registration failed");
+      }
+
+      alert("Registered successfully! Please login now.");
+      setMode("login");
+ 
   };
 
   return (

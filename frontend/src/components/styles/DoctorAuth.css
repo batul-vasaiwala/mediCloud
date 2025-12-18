@@ -1,100 +1,110 @@
 /* =============================================
-   DOCTOR PORTAL STYLES - LIGHT PASTEL THEME
+   DOCTOR PORTAL STYLES (Matches Patient Portal)
    ============================================= */
 
 .doctor-portal {
-  position: relative;
-  width: 100%;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
-  overflow: hidden;
+  padding: 20px;
+  position: relative;
+  background: linear-gradient(135deg, #eef7ff 0%, #f5f3ff 100%);
 }
 
+/* Background blobs */
 .doctor-background {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   z-index: 0;
 }
 
 .doctor-gradient {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 25%, #dbeafe 50%, #fce7f3 75%, #f3e8ff 100%);
-  animation: gradient-shift-light 15s ease infinite;
-}
-
-@keyframes gradient-shift-light {
-  0% {
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.8;
-  }
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(8, 145, 178, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.12) 0%, transparent 50%);
 }
 
 .doctor-blob {
   position: absolute;
+  width: 380px;
+  height: 380px;
+  filter: blur(80px);
+  opacity: 0.28;
   border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.4;
-  animation: float 20s ease-in-out infinite;
 }
 
 .doctor-blob-1 {
-  width: 300px;
-  height: 300px;
-  top: -100px;
-  right: -50px;
-  background: linear-gradient(135deg, #a78bfa, #c084fc);
+  top: -40px;
+  left: -60px;
+  background: #0ea5e9;
 }
 
 .doctor-blob-2 {
-  width: 400px;
-  height: 400px;
-  bottom: -150px;
-  left: -100px;
-  background: linear-gradient(135deg, #fbcfe8, #f0abfc);
-  animation: float-reverse 25s ease-in-out infinite;
+  bottom: -40px;
+  right: -60px;
+  background: #6366f1;
 }
 
-@keyframes float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(30px, -30px) scale(1.1); }
-}
-
-@keyframes float-reverse {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-30px, 30px) scale(1.05); }
-}
-
-/* =============================================
-   DOCTOR CONTAINER & LAYOUT
-   ============================================= */
-
+/* Main Container */
 .doctor-container {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
-  max-width: 500px;
-  animation: fade-in-up 0.8s ease-out;
+  max-width: 540px;
 }
 
-@keyframes fade-in-up {
+/* Back Button */
+.back-button {
+  background: white;
+  border: 2px solid #dbeafe;
+  color: #075985;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 24px;
+}
+
+.back-button:hover {
+  background: #e0f2fe;
+  border-color: #0284c7;
+  transform: translateX(-4px);
+}
+
+/* Header */
+.doctor-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.doctor-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #075985;
+}
+
+/* Card */
+.doctor-card {
+  background: white;
+  border: 2px solid #dbeafe;
+  border-radius: 20px;
+  padding: 40px 32px;
+  box-shadow: 0 8px 32px rgba(7, 89, 133, 0.12);
+  animation: slide-up 0.5s ease-out;
+}
+
+@keyframes slide-up {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -102,300 +112,138 @@
   }
 }
 
-.doctor-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 40px;
-  position: relative;
-}
-
-.back-button {
-  background: rgba(255, 255, 255, 0.7);
-  color: #7c3aed;
-  border: 2px solid #e9d5ff;
-  padding: 10px 20px;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.back-button:hover {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: #c084fc;
-  transform: translateX(-5px);
-}
-
-.doctor-title {
-  font-size: 2rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -0.02em;
-}
-
-/* =============================================
-   DOCTOR CARD
-   ============================================= */
-
-.doctor-card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 2px solid rgba(199, 124, 255, 0.2);
-  border-radius: 28px;
-  padding: 40px 32px;
-  box-shadow: 0 20px 60px rgba(199, 124, 255, 0.15);
-  animation: slide-in 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-@keyframes slide-in {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* =============================================
-   TABS
-   ============================================= */
-
+/* Tabs */
 .doctor-tabs {
   display: flex;
   gap: 12px;
   margin-bottom: 32px;
-  border-bottom: 2px solid #f3e8ff;
-  padding-bottom: 16px;
+  background: #e0f2fe;
+  padding: 6px;
+  border-radius: 12px;
 }
 
 .tab {
   flex: 1;
-  background: transparent;
-  border: none;
   padding: 12px 16px;
-  font-size: 1rem;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 0.95rem;
   font-weight: 600;
-  color: #a78bfa;
   cursor: pointer;
+  border-radius: 10px;
   transition: all 0.3s ease;
-  border-bottom: 3px solid transparent;
-  position: relative;
-  margin-bottom: -16px;
-}
-
-.tab:hover {
-  color: #7c3aed;
 }
 
 .tab.active {
-  color: #7c3aed;
-  border-bottom-color: #a78bfa;
+  background: white;
+  color: #0369a1;
+  box-shadow: 0 2px 8px rgba(3, 105, 161, 0.15);
 }
 
-/* =============================================
-   FORM STYLES
-   ============================================= */
-
+/* Form */
 .doctor-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
+/* Form Groups */
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .form-group label {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  color: #5b21b6;
-  letter-spacing: 0.3px;
+  color: #1e293b;
 }
 
-.form-group input,
-.form-group select {
-  padding: 14px 16px;
-  border: 2px solid #f3e8ff;
+/* Inputs */
+.doctor-form input,
+.doctor-form select {
+  padding: 12px 14px;
+  border: 2px solid #dbeafe;
   border-radius: 12px;
-  font-size: 1rem;
-  background: rgba(249, 240, 255, 0.5);
-  color: #3f0f5c;
-  font-family: inherit;
+  font-size: 0.95rem;
+  background: #f8fafc;
+  color: #1e293b;
   transition: all 0.3s ease;
+  font-family: inherit;
 }
 
-.form-group input::placeholder {
-  color: #d8b4fe;
+.doctor-form input::placeholder {
+  color: #cbd5e1;
 }
 
-.form-group input:focus,
-.form-group select:focus {
+.doctor-form input:focus,
+.doctor-form select:focus {
   outline: none;
-  border-color: #a78bfa;
-  background: rgba(249, 240, 255, 1);
-  box-shadow: 0 0 0 4px rgba(199, 124, 255, 0.1);
-  transform: translateY(-2px);
+  border-color: #0369a1;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(3, 105, 161, 0.15);
 }
 
-.form-group select {
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a78bfa' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 36px;
+/* Form Row */
+.form-row {
+  display: flex;
+  gap: 16px;
 }
 
-/* =============================================
-   FORM BUTTON
-   ============================================= */
+.form-row .form-group {
+  flex: 1;
+}
 
+/* Submit Button */
 .form-button {
-  padding: 14px 24px;
-  background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+  background: linear-gradient(135deg, #0369a1 0%, #0891b2 100%);
   color: white;
   border: none;
+  padding: 14px 24px;
   border-radius: 12px;
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 24px rgba(199, 124, 255, 0.3);
-  margin-top: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  overflow: hidden;
-}
-
-.form-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.15);
-  transition: left 0.3s ease;
+  box-shadow: 0 4px 15px rgba(3, 105, 161, 0.25);
+  margin-top: 6px;
 }
 
 .form-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(199, 124, 255, 0.4);
-  background: linear-gradient(135deg, #9d7deb 0%, #e84d98 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(3, 105, 161, 0.35);
+  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
 }
-
-.form-button:active {
-  transform: translateY(-1px);
-}
-
-/* =============================================
-   FORM LINK
-   ============================================= */
 
 .form-link {
   text-align: center;
-  font-size: 0.95rem;
-  color: #9f7aea;
-  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #0369a1;
+  margin-top: 8px;
 }
 
 .form-link span {
-  color: #7c3aed;
-  font-weight: 700;
+  color: #0284c7;
   cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: underline;
+  font-weight: 600;
 }
 
 .form-link span:hover {
-  color: #a78bfa;
+  text-decoration: underline;
 }
 
 /* =============================================
    RESPONSIVE DESIGN
    ============================================= */
-
-@media (max-width: 768px) {
-  .doctor-container {
-    max-width: 100%;
-  }
-
-  .doctor-header {
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
-  }
-
-  .back-button {
-    width: 100%;
-  }
-
+@media (max-width: 480px) {
   .doctor-card {
-    padding: 32px 24px;
+    padding: 28px 20px;
   }
 
   .form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .form-group input,
-  .form-group select {
-    padding: 12px 14px;
-    font-size: 16px; /* Prevents zoom on iOS */
-  }
-
-  .form-button {
-    padding: 12px 20px;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .doctor-portal {
-    padding: 20px 16px;
-  }
-
-  .doctor-title {
-    font-size: 1.5rem;
-  }
-
-  .doctor-card {
-    padding: 24px 18px;
-  }
-
-  .doctor-tabs {
-    gap: 8px;
-    margin-bottom: 24px;
-  }
-
-  .tab {
-    font-size: 0.9rem;
-    padding: 10px 12px;
-  }
-
-  .form-group label {
-    font-size: 0.85rem;
-  }
-
-  .form-group input,
-  .form-group select {
-    padding: 11px 12px;
+    flex-direction: column;
+    gap: 12px;
   }
 }

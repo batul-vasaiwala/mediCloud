@@ -6,6 +6,7 @@ import DoctorDashboard from "./components/Doctor/DoctorDashboard";
 import PatientAuth from "./components/Auth/PatientAuth";
 import PatientDashboard from "./components/Patient/PatientDashboard";
 import ProtectedRoute from "./ProtectedRoute";
+import AddPrescriptionPage from "./components/Doctor/add-prescription/add-prescription";
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
     <Route path="/doctorDashboard" element={<DoctorDashboard />} />
     <Route path="/patientDashboard" element={<PatientDashboard />} />
   </Route>
+    {/* Doctor Routes */}
+  <Route path="/doctor/add-prescription" element={<AddPrescriptionPage />} />
 </Routes>
     </Router>
   );
