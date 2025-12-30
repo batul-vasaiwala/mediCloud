@@ -258,7 +258,8 @@ async function onPatientEmailChange(email) {
                 borderRadius: 20,
                 border: symptoms.includes(s) ? "2px solid #0b84ff" : "1px solid #ddd",
                 background: symptoms.includes(s) ? "#e8f2ff" : "#fff",
-                cursor: "pointer"
+                cursor: "pointer",
+                color:"black"
               }}>{s}</button>
           ))}
         </div>

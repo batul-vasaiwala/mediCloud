@@ -8,7 +8,7 @@ frontend/node_modules/
 .env
 backend/.env
 frontend/.env
-
+ai_module/.env
 # Build files
 dist/
 build/

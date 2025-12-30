@@ -511,7 +511,8 @@ export const listPrescriptionsByDoctor = async (req, res) => {
 export const listPrescriptionsByPatient = async (req, res) => {
   try {
     const email = (req.query.email || "").toLowerCase();
-    const list = await Prescription.find({ patientEmail: email }).sort({ createdAt: -1 }).lean();
+    const list = await Prescription.find({ patientEmail: email }).sort({ createdAt: -1 })  .populate("doctorId", "name specialization")
+      .lean();
     res.json(list);
   } catch (err) {
     console.error("listPrescriptionsByPatient error:", err);

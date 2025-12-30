@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import './styles/Home.css';
 import DoctorAuth from './Auth/DoctorAuth';   
 import PatientAuth from './Auth/PatientAuth';
+import VerifyUpload from './verify/VerifyUpload';
 
 // ------------------- Icons ------------------------
 
@@ -64,6 +65,10 @@ export default function HomePage() {
   else if(activePortal==='patient'){
     return <PatientAuth onBack={handleBack}/>;
   }
+  else if (activePortal === 'verify') {
+  return <VerifyUpload />
+}
+
 
   const cards = [
     {
@@ -78,12 +83,12 @@ export default function HomePage() {
       description: 'Access health records, book appointments, and track medications.',
       icon: <PatientIcon />,
     },
-    {
-      id: 'admin',
-      title: 'Admin',
-      description: 'Oversee operations, manage data, and monitor system activity.',
-      icon: <AdminIcon />,
-    },
+    // {
+    //   id: 'admin',
+    //   title: 'Admin',
+    //   description: 'Oversee operations, manage data, and monitor system activity.',
+    //   icon: <AdminIcon />,
+    // },
     {
       id: 'verify',
       title: 'Verify Prescription',
@@ -111,12 +116,13 @@ export default function HomePage() {
                 <p className="card-description">{card.description}</p>
 
                 {/* FIX: OnClick added */}
-                <button
-                  className="card-button"
-                  onClick={() => handleEnterPortal(card.id)}
-                >
-                  Enter Portal
-                </button>
+               <button
+  className="card-button"
+  onClick={() => handleEnterPortal(card.id)}
+>
+  {card.id === 'verify' ? 'Upload to Verify' : 'Enter Portal'}
+</button>
+
               </div>
             ))}
           </div>

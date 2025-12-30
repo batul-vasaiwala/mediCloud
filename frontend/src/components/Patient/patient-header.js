@@ -13,10 +13,12 @@ export default function PatientHeader() {
     }
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("patient");
-    window.location.href = "/login";
-  };
+const handleLogout = () => {
+  localStorage.removeItem("patient");
+  localStorage.removeItem("token");
+  window.location.href = "/";
+};
+
 
   if (!patient) return null; // prevent crash before data loads
 

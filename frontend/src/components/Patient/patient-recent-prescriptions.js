@@ -1,11 +1,19 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import styles from "./patient-recent-prescriptions.module.css";
-import { Eye } from "lucide-react";
+import { Eye, Share2, X } from "lucide-react";
+import QRCode from "react-qr-code";
+const API_BASE_URL = "https://nonspirited-marni-unhugged.ngrok-free.dev";
+
+
+
 
 export default function PatientRecentPrescriptions() {
   const [prescriptions, setPrescriptions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showShare, setShowShare] = useState(false);
+const [shareLink, setShareLink] = useState("");
+
 
   useEffect(() => {
     const patient = JSON.parse(localStorage.getItem("patient"));
@@ -16,9 +24,10 @@ export default function PatientRecentPrescriptions() {
       return;
     }
 
-    fetch(
-      `http://localhost:5000/api/prescriptions/patient-list?email=${patient.email}`
-    )
+ fetch(
+  `http://localhost:5000/api/prescriptions/patient-list?email=${patient.email}`
+)
+
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched prescriptions:", data);
@@ -60,19 +69,66 @@ export default function PatientRecentPrescriptions() {
               </p>
             </div>
 
-            <div className={styles.actions}>
-              <a
-                href={`http://localhost:5000/api/prescriptions/download/${p._id}`}
-                target="_blank"
-                rel="noreferrer"
-                className={styles.iconBtn}
-              >
-                <Eye size={18} />
-              </a>
-            </div>
+   <div className={styles.actions}>
+  {/* View */}
+  <a
+    href={`${API_BASE_URL}/api/prescriptions/download/${p._id}`}
+
+    target="_blank"
+    rel="noreferrer"
+    className={styles.iconBtn}
+  >
+    <Eye size={18} />
+  </a>
+
+  {/* Share */}
+  <button
+    className={styles.iconBtn}
+    onClick={() => {
+      setShareLink(
+  `${API_BASE_URL}/api/prescriptions/download/${p._id}`
+);
+
+      setShowShare(true);
+    }}
+  >
+    <Share2 size={18} />
+  </button>
+</div>
+
           </div>
         ))}
       </div>
+      {showShare && (
+  <div className={styles.modalOverlay}>
+    <div className={styles.modal}>
+      <button
+        className={styles.closeBtn}
+        onClick={() => setShowShare(false)}
+      >
+        <X size={18} />
+      </button>
+
+      <h3>Share Prescription</h3>
+
+<QRCode value={shareLink} size={180} />
+
+
+
+      <p className={styles.shareLink}>{shareLink}</p>
+
+      <a
+        href={shareLink}
+        target="_blank"
+        rel="noreferrer"
+        className={styles.openLink}
+      >
+        Open Prescription
+      </a>
+    </div>
+  </div>
+)}
+
     </section>
   );
 }

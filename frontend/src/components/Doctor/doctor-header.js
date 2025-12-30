@@ -18,10 +18,12 @@ export default function DoctorHeader() {
     navigate("/Doctor/add-prescription")
   }
 
-  const handleLogout = () => {
-    localStorage.removeItem("doctor")
-    navigate("./Auth/DoctorAuth")
-  }
+ const handleLogout = () => {
+  localStorage.removeItem("doctor");
+  localStorage.removeItem("token");
+  window.location.href = "/";
+};
+
 
   return (
     <header className={styles.header}>

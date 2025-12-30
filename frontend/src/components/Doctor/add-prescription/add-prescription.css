@@ -1,168 +1,165 @@
-/* -------------------------
-   GLOBAL PAGE BACKGROUND
---------------------------*/
+/* ===== Page Background ===== */
 .prescription-page {
   min-height: 100vh;
-  width: 100%;
-  background: linear-gradient(135deg, #e3f2ff, #f5faff);
-  padding: 30px;
-  font-family: "Inter", sans-serif;
+  background: #f4f8fc; /* very light blue */
+  padding: 30px 0;
+  font-family: "Inter", "Segoe UI", sans-serif;
 }
 
-/* -------------------------
-      MAIN CONTAINER
---------------------------*/
+/* ===== Main Container ===== */
 .prescription-container {
-  max-width: 900px;
-  margin: auto;
   background: #ffffff;
-  padding: 25px;
+  max-width: 980px;
+  margin: auto;
+  padding: 28px 32px;
   border-radius: 14px;
-  box-shadow: 0px 4px 14px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(0, 60, 120, 0.08);
 }
 
-/* -------------------------
-        HEADINGS
---------------------------*/
+/* ===== Heading ===== */
 .prescription-container h2 {
-  margin-bottom: 20px;
-  font-weight: 700;
-  color: #0b4f88;
-}
-
-/* -------------------------
-       LABEL + INPUT
---------------------------*/
-.prescription-field label {
+  margin-bottom: 24px;
+  color: #0b3c68;
   font-weight: 600;
-  color: #333;
+  letter-spacing: 0.3px;
 }
 
-.prescription-field input,
-.prescription-field textarea,
-.prescription-field select {
+/* ===== Labels ===== */
+.prescription-container label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #344054;
+}
+
+/* ===== Inputs & Textareas ===== */
+.prescription-container input,
+.prescription-container textarea {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #d8e3eb;
-  border-radius: 8px;
+  padding: 10px 12px;
   margin-top: 6px;
-  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #d0d9e6;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s ease;
 }
 
-.prescription-field textarea {
-  resize: vertical;
-}
-
-/* -------------------------
-    SECTION CARD BOXES
---------------------------*/
-.section-box {
-  padding: 15px;
-  background: #f9fcff;
-  border: 1px solid #dce9f3;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-/* -------------------------
-     SYMPTOMS BUTTONS
---------------------------*/
-.symptom-btn {
-  padding: 7px 14px;
-  border-radius: 20px;
-  border: 1px solid #ccd9e8;
-  background: #fff;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.symptom-selected {
-  background: #d8ecff;
+.prescription-container input:focus,
+.prescription-container textarea:focus {
   border-color: #0b84ff;
+  box-shadow: 0 0 0 2px rgba(11, 132, 255, 0.15);
 }
 
-/* -------------------------
-         MEDICINE ROW
---------------------------*/
-.medicine-row {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  background: #f5f9ff;
-  border: 1px solid #dcecff;
-  padding: 12px;
-  border-radius: 10px;
-  margin-top: 10px;
-}
-
-/* -------------------------
-        BUTTONS THEME
---------------------------*/
-.btn-primary {
+/* ===== Buttons ===== */
+.prescription-container button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
   background: #0b84ff;
   color: white;
-  padding: 10px 18px;
-  border-radius: 8px;
-  border: none;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.2s ease;
 }
 
-.btn-primary:hover {
-  background: #006fe3;
+.prescription-container button:hover {
+  background: #086dd0;
 }
 
-.btn-secondary {
-  background: #f1f1f1;
-  padding: 10px 18px;
+.prescription-container button:disabled {
+  background: #b6d4ff;
+  cursor: not-allowed;
+}
+
+/* Secondary / outline buttons */
+.prescription-container button.secondary {
+  background: white;
+  color: #0b84ff;
+  border: 1px solid #0b84ff;
+}
+
+/* ===== Patient Card ===== */
+.prescription-container .patient-card {
+  background: #f8fbff;
+  border: 1px solid #dce8f7;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  font-size: 14px;
+  color: #1f2a37;
+}
+
+/* ===== Section Blocks ===== */
+.prescription-container > div {
+  margin-bottom: 20px;
+}
+
+/* ===== Medicine Rows ===== */
+.prescription-container .medicine-row {
+  background: #f9fbff;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #e1ebf7;
+}
+
+/* ===== Checkbox groups ===== */
+.prescription-container input[type="checkbox"] {
+  width: auto;
+  margin-right: 6px;
+}
+
+/* ===== Lab Tests ===== */
+.prescription-container .lab-test {
+  background: #ffffff;
+  border: 1px solid #d0d9e6;
   border-radius: 8px;
-  border: none;
+  padding: 8px 12px;
   cursor: pointer;
 }
 
-.btn-danger {
-  background: #ff4a4a;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: none;
-}
-
-/* -------------------------
-       PREVIEW MODAL
---------------------------*/
-.preview-overlay {
+/* ===== Modal Overlay ===== */
+.prescription-modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.6);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 9999;
 }
 
-.preview-box {
-  width: 90%;
-  height: 90%;
+/* ===== Modal Box ===== */
+.prescription-modal-content {
+  width: 92%;
+  height: 92%;
   background: white;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-.preview-header {
-  padding: 14px;
-  border-bottom: 1px solid #eee;
+/* ===== Modal Header ===== */
+.prescription-modal-header {
+  padding: 14px 18px;
+  background: #f5f9ff;
+  border-bottom: 1px solid #dce8f7;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: 500;
 }
 
-.preview-body {
+/* ===== Iframe ===== */
+.prescription-modal iframe {
   flex: 1;
-  background: #d9e6f2;
+  border: none;
+}
+
+/* ===== Small utility spacing ===== */
+.inline-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }

@@ -9,6 +9,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import prescriptionRoutes from "./routes/prescriptionRoutes.js";
 import analyticsRoutes from "./routes/analyticsRoutes.js";
+import verifyRoutes from "./routes/verify-prescription.js";
 
 // Fix __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -41,6 +42,7 @@ app.use("/api/patients", patientRoutes);
 
 
 app.use("/api/doctor/analytics", analyticsRoutes);
+app.use("/api", verifyRoutes)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
