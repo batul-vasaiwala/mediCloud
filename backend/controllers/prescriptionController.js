@@ -631,3 +631,32 @@ export const getPatientMedicalHistory = async (req, res) => {
     });
   }
 };
+// GET /api/prescriptions/search?q=...
+export const searchPrescriptions = async (req, res) => {
+  try {
+    const q = req.query.q;
+
+    if (!q) {
+      return res.json([]);
+    }
+
+    const searchRegex = new RegExp(q, "i"); // case-insensitive
+
+    const results = await Prescription.find({
+      $or: [
+        { patientEmail: searchRegex },
+        { diagnosis: searchRegex },
+        { "patientSnapshot.fullName": searchRegex },
+        { _id: mongoose.Types.ObjectId.isValid(q) ? q : null }
+      ]
+    })
+      .sort({ createdAt: -1 })
+      .limit(10)
+      .lean();
+
+    res.json(results);
+  } catch (err) {
+    console.error("searchPrescriptions error:", err);
+    res.status(500).json({ error: err.message });
+  }
+};

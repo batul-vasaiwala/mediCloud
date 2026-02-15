@@ -1,5 +1,5 @@
 import express from "express";
-import { registerPatient, loginPatient } from "../controllers/patientController.js";
+import { registerPatient, loginPatient,updatePatient } from "../controllers/patientController.js";
 import { getAllPatients } from "../controllers/patientController.js";
 const router = express.Router();
 
@@ -11,4 +11,7 @@ router.post("/register", registerPatient);
 router.post("/login", loginPatient);
 
 router.get("/", getAllPatients);
+
+router.put("/patients/:id", updatePatient)
+
 export default router;

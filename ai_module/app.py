@@ -1,8 +1,3 @@
-# ==========================================================
-# MediCloud AI Prescription Verification - FULL FLASK APP
-# Port: 6000
-# ==========================================================
-
 import os
 import cv2
 import re
@@ -18,7 +13,6 @@ from PIL import Image
 from dotenv import load_dotenv
 load_dotenv()
 
-# ---------------- FLASK APP ----------------
 app = Flask(__name__)
 CORS(app)
 
@@ -245,9 +239,6 @@ def verify_api():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# ==========================================================
-# 9️⃣ RUN SERVER (PORT 6000)
-# ==========================================================
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0",

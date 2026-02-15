@@ -4,6 +4,9 @@ import axios from "axios"
 import styles from "./patient-list.module.css"
 import { ChevronRight } from "lucide-react"
 import PatientHistory from "./PatientHistory"
+import SearchBar from "./search-bar"
+
+
 export default function PatientList() {
   const [patients, setPatients] = useState([])
   const [loading, setLoading] = useState(true)
@@ -47,6 +50,7 @@ useEffect(() => {
   return (
     <div className={styles.patientList}>
       <h2 className={styles.title}>Patient List</h2>
+<SearchBar onSelectPatient={setSelectedPatient} />
 
       <div className={styles.tableContainer}>
         <table className={styles.table}>

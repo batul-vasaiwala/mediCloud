@@ -9,7 +9,8 @@ import {
   getPrescriptionsByPatient,
   getRecentPrescriptionsByDoctor,
   getPatientAnalytics,
-  getPatientMedicalHistory
+  getPatientMedicalHistory,
+  searchPrescriptions
 } from "../controllers/prescriptionController.js";
 
 const router = express.Router();
@@ -32,6 +33,7 @@ router.get(
   getPatientMedicalHistory
 );
 
+router.get("/search", searchPrescriptions);
 
 
 export default router;

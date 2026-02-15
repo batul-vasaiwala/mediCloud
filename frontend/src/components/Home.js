@@ -1,11 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './styles/Home.css';
 import DoctorAuth from './Auth/DoctorAuth';   
 import PatientAuth from './Auth/PatientAuth';
 import VerifyUpload from './verify/VerifyUpload';
-
+import AnalyticsDashboard from './analytics/AnalyticsDashboard';
+import TrendChart from './AITrendChart';
+import AIAnalyticsDashboard from './AIAnalytics/AnalyticsDashboard';
+import Chatbot from './Chatbot';
 // ------------------- Icons ------------------------
 
 const DoctorIcon = () => (
@@ -47,7 +50,18 @@ const VerifyIcon = () => (
 
 export default function HomePage() {
   const [activePortal, setActivePortal] = useState(null);
+const [showAI, setShowAI] = useState(false);
+const [aiOpen, setAiOpen] = useState(false);
+const [chatbotOpen, setChatbotOpen] = useState(false);
 
+useEffect(() => {
+  const interval = setInterval(() => {
+    setAiOpen(true);
+    setTimeout(() => setAiOpen(false), 1500);
+  }, 3000);
+
+  return () => clearInterval(interval);
+}, []);
   // Handle opening a portal
   const handleEnterPortal = (id) => {
     setActivePortal(id);
@@ -68,6 +82,10 @@ export default function HomePage() {
   else if (activePortal === 'verify') {
   return <VerifyUpload />
 }
+if (showAI) {
+  return <AIAnalyticsDashboard onBack={() => setShowAI(false)} />;
+}
+
 
 
   const cards = [
@@ -83,30 +101,60 @@ export default function HomePage() {
       description: 'Access health records, book appointments, and track medications.',
       icon: <PatientIcon />,
     },
-    // {
-    //   id: 'admin',
-    //   title: 'Admin',
-    //   description: 'Oversee operations, manage data, and monitor system activity.',
-    //   icon: <AdminIcon />,
-    // },
+  
     {
       id: 'verify',
       title: 'Verify Prescription',
-      description: 'Authenticate prescription documents instantly.',
+      description: 'Authenticate and validate prescription documents instantly.',
       icon: <VerifyIcon />,
     },
   ];
 
   return (
     <div className="homepage">
+{/* ------------ NAVBAR ------------ */}
+<nav className="navbar">
+  <div className="nav-container">
+    
+    <div className="nav-logo">
+      MediCloud
+    </div>
+
+    <ul className="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#analytics">Analytics</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+  </div>
+</nav>
 
       {/* ------------ HERO SECTION ------------ */}
-      <section className="hero-section">
+      <section className="hero-section" id="home" >
         <div className="hero-background"></div>
 
         <div className="hero-content">
           <h1 className="hero-title">Welcome to MediCloud</h1>
           <p className="hero-subtitle">A Modern, Secure Healthcare Management System</p>
+<div
+  className={`ai-ai-pill ${aiOpen ? 'active' : ''}`}
+  onClick={() => setChatbotOpen(true)}
+>
+
+
+  <div className="ai-icon-circle">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M12 2a7 7 0 0 0-7 7v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9a7 7 0 0 0-7-7z"/>
+      <path d="M8 21h8"/>
+      <path d="M12 17v4"/>
+    </svg>
+  </div>
+
+  <span className="ai-pill-text">Medicloud AI</span>
+</div>
+
 
           <div className="cards-grid">
             {cards.map(card => (
@@ -124,50 +172,141 @@ export default function HomePage() {
 </button>
 
               </div>
+              
             ))}
           </div>
         </div>
       </section>
 
+{/* ------------ ANALYTICS DASHBOARD ------------ */}
+
+<AnalyticsDashboard />
+
+<section  id="analytics" className="ai-cta-section">
+  <div className="ai-cta-box">
+    <h3>Need deeper AI insights?</h3>
+    <p>
+      Explore AI-powered disease trends, predictions,
+      and monthly analytics generated from real data.
+    </p>
+    <button
+      className="ai-cta-button"
+      onClick={() => setShowAI(true)}
+    >
+      View AI Analytics →
+    </button>
+  </div>
+</section>
+
+
+
+<Chatbot open={chatbotOpen} onClose={() => setChatbotOpen(false)} />
+
+{/* ------------ ANALYTICS DASHBOARD ------------ */}
+{/* <section id="ai-dashboard" className="ai-dashboard-section">
+  <TrendChart />
+</section> */}
       {/* ------------ ABOUT US ------------ */}
-      <section className="about-section">
-        <h2 className="section-title">About MediCloud</h2>
-        <p className="section-text">
-          MediCloud is a cloud–powered healthcare platform designed to make medical
-          workflows smarter and easier. From digital prescriptions to secure data
-          management, we bring modern solutions to hospitals, doctors, and patients.
-        </p>
-      </section>
+ <section id="about" className="about-section">
+  <div className="about-overlay"></div>
+
+  <div className="about-content">
+    <h2 className="section-title">Powering the Future of Digital Healthcare</h2>
+
+    <p className="about-text">
+      MediCloud is a cloud-based healthcare management platform designed to
+      streamline clinical workflows and enhance patient engagement.
+      From secure digital prescriptions to AI-powered analytics,
+      the system unifies medical data into a structured and intelligent ecosystem.
+    </p>
+
+    <p className="about-text">
+      Built with scalability and security at its core, MediCloud enables
+      hospitals, clinics, and practitioners to operate efficiently while
+      maintaining strict healthcare data standards.
+    </p>
+
+    <div className="about-stats">
+      <div>
+        <h3>Secure</h3>
+        <span>Encrypted Cloud Architecture</span>
+      </div>
+
+      <div>
+        <h3>Intelligent</h3>
+        <span>AI-Based Trend Analysis</span>
+      </div>
+
+      <div>
+        <h3>Scalable</h3>
+        <span>Built for Growing Healthcare Systems</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
       {/* ------------ FEATURES SECTION ------------ */}
-      <section className="features-section">
-        <h2 className="section-title">Why Choose Us?</h2>
+   <section  id="features" className="features-section">
+  <div className="features-wrapper">
 
-        <div className="features-grid">
-          <div className="feature-box">
-            <h3>⚡ Fast & Reliable</h3>
-            <p>Optimized for speed, ensuring quick access to medical data.</p>
-          </div>
+    <h2 className="section-title">How MediCloud Works</h2>
 
-          <div className="feature-box">
-            <h3>🔒 Secure</h3>
-            <p>Your records are encrypted and stored safely on the cloud.</p>
-          </div>
+    <div className="feature-steps">
 
-          <div className="feature-box">
-            <h3>🌐 Accessible</h3>
-            <p>Use from any device without installation — just log in.</p>
-          </div>
-
-          <div className="feature-box">
-            <h3>🤝 User Friendly</h3>
-            <p>A smooth and simple UI for doctors, patients, and admins.</p>
-          </div>
+      <div className="feature-step">
+        <span>01</span>
+        <div>
+          <h4>Structured User Portals</h4>
+          <p>
+            Doctors and patients access personalized dashboards
+            with role-specific functionality.
+          </p>
         </div>
-      </section>
+      </div>
+
+      <div className="feature-step">
+        <span>02</span>
+        <div>
+          <h4>Prescription Verification</h4>
+          <p>
+            Uploaded prescriptions are authenticated
+            using digital validation systems.
+          </p>
+        </div>
+      </div>
+
+      <div className="feature-step">
+        <span>03</span>
+        <div>
+          <h4>Analytics & AI Insights</h4>
+          <p>
+            Real-time dashboards and AI models identify
+            trends and support decision-making.
+          </p>
+        </div>
+      </div>
+
+      <div className="feature-step">
+        <span>04</span>
+        <div>
+          <h4>Scalable Cloud Deployment</h4>
+          <p>
+            Built for expansion across hospitals,
+            clinics, and healthcare networks.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
 
       {/* ------------ CONTACT SECTION ------------ */}
-      <section className="contact-section">
+      <section id="contact" className="contact-section">
         <h2 className="section-title">Contact Us</h2>
 
         <form className="contact-form">

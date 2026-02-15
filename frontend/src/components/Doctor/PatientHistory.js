@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
-
+import "./PatientHistory.css"
 export default function PatientHistory({ email, onBack }) {
   const [prescriptions, setPrescriptions] = useState([])
   const [loading, setLoading] = useState(true)
@@ -25,26 +25,26 @@ export default function PatientHistory({ email, onBack }) {
 
   if (loading) return <p>Loading history...</p>
 
-  return (
-    <div style={{ padding: 24 }}>
-      <button onClick={onBack}>← Back</button>
-      <h2>Prescription History</h2>
+ return (
+  <div className="history-container">
+    <button className="back-btn" onClick={onBack}>← Back</button>
+    <h2 className="history-title">Prescription History</h2>
 
-      {prescriptions.length === 0 && <p>No prescriptions found.</p>}
+    {prescriptions.length === 0 && (
+      <p className="no-data">No prescriptions found.</p>
+    )}
 
-      {prescriptions.map(p => (
-        <div
-          key={p._id}
-          style={{
-            border: "1px solid #e5e7eb",
-            padding: 16,
-            borderRadius: 8,
-            marginBottom: 12
-          }}
-        >
-          <div><strong>Date:</strong> {new Date(p.createdAt).toLocaleDateString()}</div>
-          <div><strong>Diagnosis:</strong> {p.diagnosis}</div>
+    {prescriptions.map(p => (
+      <div key={p._id} className="history-card">
+        <div className="history-date">
+          <strong>Date:</strong> {new Date(p.createdAt).toLocaleDateString()}
+        </div>
 
+        <div className="history-diagnosis">
+          <strong>Diagnosis:</strong> {p.diagnosis}
+        </div>
+
+        <div className="history-medicines">
           <strong>Medicines:</strong>
           <ul>
             {p.medicines.map((m, i) => (
@@ -53,16 +53,20 @@ export default function PatientHistory({ email, onBack }) {
               </li>
             ))}
           </ul>
-
-          <a
-            href={`http://localhost:5000/api/prescriptions/download/${p._id}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            View PDF
-          </a>
         </div>
-      ))}
-    </div>
-  )
+
+        <a
+          className="pdf-link"
+          href={`http://localhost:5000/api/prescriptions/download/${p._id}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          View PDF
+        </a>
+      </div>
+    ))}
+  </div>
+)
+
+  
 }

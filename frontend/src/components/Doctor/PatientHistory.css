@@ -1,0 +1,98 @@
+/* Main Wrapper */
+.history-container {
+  padding: 24px;
+}
+
+/* Title */
+.history-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 20px 0;
+}
+
+/* Back Button */
+.back-btn {
+  background: #fefefe;
+  border: 1px solid #42a2e1;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #060606;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: #ffffff;
+  border-color: #bfdbfe;
+}
+
+/* Card */
+.history-card {
+  background: white;
+  border: 1px solid #e0f2fe;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.history-card:hover {
+  background: #f8fafc;
+  border-color: #bfdbfe;
+}
+
+/* Date + Diagnosis */
+.history-date,
+.history-diagnosis {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+/* Medicines */
+.history-medicines {
+  margin-top: 8px;
+}
+
+.history-medicines ul {
+  margin: 6px 0 0 16px;
+  padding: 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.history-medicines li {
+  margin-bottom: 4px;
+}
+
+/* PDF Button */
+.pdf-link {
+  display: inline-block;
+  margin-top: 12px;
+  background: linear-gradient(135deg, #336dd3 0%, #0ea5e9 100%);
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.pdf-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(51, 109, 211, 0.2);
+}
+
+/* No Data */
+.no-data {
+  font-size: 13px;
+  color: #94a3b8;
+}

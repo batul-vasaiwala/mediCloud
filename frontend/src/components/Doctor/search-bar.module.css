@@ -35,3 +35,22 @@
   color: #94a3b8;
   flex-shrink: 0;
 }
+.resultsBox {
+  background: white;
+  border: 1px solid #e0f2fe;
+  border-radius: 8px;
+  margin-top: 6px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.resultItem {
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.resultItem:hover {
+  background: #f8fafc;
+}

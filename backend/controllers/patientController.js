@@ -57,3 +57,16 @@ export const getAllPatients = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+export const updatePatient = async (req, res) => {
+  try {
+    const updated = await Patient.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    ).select("-password")
+
+    res.json(updated)
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+}

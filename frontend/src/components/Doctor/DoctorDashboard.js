@@ -13,7 +13,7 @@ export default function DoctorDashboard() {
       <div className={styles.mainContent}>
         <DoctorHeader />
          <div className={styles.content}>
-          <SearchBar />
+        {/* <SearchBar /> */}
          <AnalyticsCards />
           <div className={styles.gridContent}>
             <PatientList />
